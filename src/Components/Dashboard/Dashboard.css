@@ -1,0 +1,47 @@
+h3 {
+  font-size: 1.6em;
+  margin: .1rem 0 1rem 1.5rem;
+}
+
+.now-playing h3 {
+  margin-bottom: 0;
+}
+
+h2 {
+  font-size: 1.8em;
+  font-weight: 800;
+}
+
+.header {
+  margin: 1rem 0 1.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.header img {
+  height: 2em;
+  width: 2em;
+  margin-right: .5rem;
+}
+
+.now-playing {
+  margin-top: 1rem;
+}
+
+.now-playing-list {
+  max-height: 420px;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.now-playing-list::-webkit-scrollbar {
+  width: 0;
+}
+
+/* .slick-slide {
+  margin: 0 10px;
+}
+.slick-list {
+  margin: 0 -10px;
+} */
