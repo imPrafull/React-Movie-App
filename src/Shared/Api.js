@@ -17,6 +17,13 @@ export async function getNowPlayingMovies() {
   return data;
 }
 
+export async function getMovieDetail(movieId) {
+  let response = await fetch(`${BASEURL}movie/${movieId}?api_key=${API_KEY}&language=en-US&append_to_response=credits`)
+    .catch(err => {console.log(err)});
+  let data = response ? await response?.json() : {errors : ['Failed to fetch']};
+  return data;
+}
+
 export async function getConfig() {
   let response = await fetch(`${BASEURL}configuration?api_key=${API_KEY}`)
     .catch(err => {console.log(err)});
