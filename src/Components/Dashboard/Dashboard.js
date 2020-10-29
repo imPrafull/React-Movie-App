@@ -50,10 +50,10 @@ function Dashboard() {
     <div>
       <div className="header">
         <img src={Icon} />
-        <h2>Cineplex</h2>
+        <h2 className="appname">Cineplex</h2>
       </div>
       <div>
-        <h3>Upcoming Movies</h3>
+        <h3 className="list-header">Upcoming Movies</h3>
         <Slider {...settings}>
           {
             upcomingMovies.map(movie => {
@@ -63,7 +63,7 @@ function Dashboard() {
         </Slider>
       </div>
       <div className="now-playing">
-        <h3>Now In Cinemas</h3>
+        <h3 className="list-header">Now In Cinemas</h3>
         <ul className="now-playing-list">
           {
             nowPlayingMovies.map(movie => {

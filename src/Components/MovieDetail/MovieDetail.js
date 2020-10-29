@@ -27,6 +27,35 @@ function MovieDetail() {
       });
   }
 
+  const getGenres = (genres) => {
+    let limitedGenres = genres && genres.slice(0, 3);
+    let result = limitedGenres && limitedGenres.map(genre => <span key={genre.id}>{genre.name}</span>);
+    return result;
+  }
+
+  const getCastList = (credits) => {
+    let limitedCasts = (credits && credits.cast) && credits.cast.slice(0,10);
+    let result = limitedCasts && limitedCasts.map(cast => {
+      return (
+        <div key={cast.cast_id}>
+          <div>
+            <img src={`${IMGBASEURL}w185/${cast.profile_path}`} alt={cast.name} />
+          </div>
+          <p className="cast-name">{cast.name}</p>
+          <p className="character-name">{cast.character}</p>
+        </div>
+      )
+    });
+    return result;
+  }
+
+  const getMovieDirector = (credits) => {
+    let director = (credits && credits.crew) && credits.crew.find(crew => crew.job.toLowerCase() == 'director');
+    if (director) {
+      return director.name
+    }
+  }
+
   const formatDate = (date) => {
     return (new Date(date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'}))
   }
@@ -36,23 +65,41 @@ function MovieDetail() {
       <div className="backdrop">
         <img src={`${IMGBASEURL}w780/${movie.backdrop_path}`} alt={`${movie.title} img`} />
       </div>
+
       <div className="top-bar">
         <div className="runtime">
-          <img src={Clock} />
+          <img src={Clock} alt="clock" />
           <p>{movie.runtime} min</p>
         </div>
         <div className="rating">
-          <img src={Star} />
+          <img src={Star} alt="star" />
           <p>{movie.vote_average}<span>/10</span></p>
           <p>{movie.vote_count}</p>
         </div>
-        <img src={Play} />
+        <img src={Play} alt="play" />
       </div>
+
       <div className="movie-header">
-        <h1 className="movie-title">{movie.title}</h1>
+        <h2 className="movie-title">{movie.title}</h2>
+        <p>{ getMovieDirector(movie.credits)}</p>
         <div className="movie-detail">
-          <p>PG</p>
-          <p>{formatDate(movie.release_date)}</p>
+          <p>{movie.adult ? 'R' : 'PG'}</p>
+          <p>{ formatDate(movie.release_date) }</p>
+        </div>
+        <div className="genres">
+          <p>{ getGenres(movie.genres) }</p>
+        </div>
+      </div>
+
+      <div className="summary">
+        <h3>Plot Summary</h3>
+        <p>{movie.overview}</p>
+      </div>
+
+      <div className="cast">
+        <h3>Cast</h3>
+        <div className="cast-list">
+          { getCastList(movie.credits) }
         </div>
       </div>
     </div>
