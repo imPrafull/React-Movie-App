@@ -33,10 +33,11 @@
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .now-playing-list::-webkit-scrollbar {
-  width: 0;
+  display: none;
 }
 
 /* .slick-slide {

@@ -17,6 +17,7 @@
   width: 100%;
   height: 500px;
   opacity: 0.8;
+  cursor: pointer;
 }
 
 .upcoming-movie .poster {
@@ -62,6 +63,7 @@
 
 .now-playing {
   margin-right: 1rem;
+  cursor: pointer;
 }
 
 .now-playing:first-child {

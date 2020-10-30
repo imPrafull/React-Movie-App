@@ -12,13 +12,40 @@ function Dashboard() {
 
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
-  const settings = {
+  const upcomingSliderSettings = {
     className: "center",
     centerMode: true,
     infinite: true,
     // centerPadding: "1px",
     slidesToShow: 1,
-    speed: 500
+    speed: 500,
+    swipeToSlide: true,
+    responsive: [
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          // infinite: true,
+          // dots: true
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          // initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
 
   useEffect(() => {
@@ -54,7 +81,7 @@ function Dashboard() {
       </div>
       <div>
         <h3 className="list-header">Upcoming Movies</h3>
-        <Slider {...settings}>
+        <Slider {...upcomingSliderSettings}>
           {
             upcomingMovies.map(movie => {
               return <MovieTile key={movie.id} movie={movie} type="upcoming" />
