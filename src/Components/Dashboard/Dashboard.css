@@ -28,7 +28,7 @@
   margin-top: 1rem;
 }
 
-.now-playing-list {
+/* .now-playing-list {
   max-height: 420px;
   display: flex;
   overflow-x: auto;
@@ -38,7 +38,7 @@
 
 .now-playing-list::-webkit-scrollbar {
   display: none;
-}
+} */
 
 /* .slick-slide {
   margin: 0 10px;

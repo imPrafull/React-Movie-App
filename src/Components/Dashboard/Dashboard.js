@@ -17,7 +17,8 @@ function Dashboard() {
     centerMode: true,
     infinite: true,
     // centerPadding: "1px",
-    slidesToShow: 1,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     speed: 500,
     swipeToSlide: true,
     responsive: [
@@ -47,6 +48,35 @@ function Dashboard() {
       }
     ]
   };
+
+  const nowplayingSliderSettings = {
+    slidesToShow: 9,
+    className: "center",
+    swipeToSlide: true,
+    infinite: true,
+    responsive: [
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 7,
+          // infinite: true,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 5,
+          // initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+        }
+      }
+    ]
+  }
 
   useEffect(() => {
     fetchList();
@@ -91,13 +121,15 @@ function Dashboard() {
       </div>
       <div className="now-playing">
         <h3 className="list-header">Now In Cinemas</h3>
-        <ul className="now-playing-list">
+        {/* <ul className="now-playing-list"> */}
+        <Slider {...nowplayingSliderSettings}>
           {
             nowPlayingMovies.map(movie => {
               return <MovieTile key={movie.id} movie={movie} type="nowPlaying" />
             })
           }
-        </ul>
+        </Slider>
+        {/* </ul> */}
       </div>
     </div>
     
