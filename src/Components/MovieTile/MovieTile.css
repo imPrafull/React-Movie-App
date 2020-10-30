@@ -41,7 +41,7 @@
 }
 
 .slick-active .upcoming-movie {
-  justify-content: flex-start;
+  justify-content: space-evenly;
   opacity: 1;
 }
 
