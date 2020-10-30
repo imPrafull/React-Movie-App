@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ScrollContainer from 'react-indiana-drag-scroll'
 
 import './MovieDetail.css';
 import Star from '../../Assets/Icons/star.svg';
@@ -96,12 +97,14 @@ function MovieDetail() {
         <p>{movie.overview}</p>
       </div>
 
-      <div className="cast">
-        <h3>Cast</h3>
-        <div className="cast-list">
-          { getCastList(movie.credits) }
+      <h3 className="cast-title">Cast</h3>
+      <ScrollContainer horizontal={true} className="scroll-container">
+        <div className="cast">
+          <div className="cast-list">
+            { getCastList(movie.credits) }
+          </div>
         </div>
-      </div>
+      </ScrollContainer>
     </div>
   );
 }
