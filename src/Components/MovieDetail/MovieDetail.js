@@ -1,32 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import ScrollContainer from 'react-indiana-drag-scroll';
 
 import './MovieDetail.css';
 import Star from '../../Assets/Icons/star.svg';
 import Play from '../../Assets/Icons/play-circle.svg';
+import Back from '../../Assets/Icons/back.svg';
 import Clock from '../../Assets/Icons/clock.svg';
 import { getMovieDetail } from '../../Shared/Api';
 import { IMGBASEURL } from '../../Shared/Api';
 
 function MovieDetail() {
   const [ movie, setMovie] = useState({});
+  const history = useHistory();
   let { id } = useParams();
 
   useEffect(() => {
+    const fetchMovieDetail = async () => {
+      getMovieDetail(id)  
+        .then(data => {
+          if (data.errors) {
+            console.log(data.errors[0]);
+            return;
+          }
+          setMovie(data);
+        });
+    }
     fetchMovieDetail();
   }, []);
-  
-  const fetchMovieDetail = async () => {
-    getMovieDetail(id)  
-      .then(data => {
-        if (data.errors) {
-          console.log(data.errors[0]);
-          return;
-        }
-        setMovie(data);
-      });
-  }
 
   const getGenres = (genres) => {
     let limitedGenres = genres && genres.slice(0, 3);
@@ -51,7 +52,7 @@ function MovieDetail() {
   }
 
   const getMovieDirector = (credits) => {
-    let director = (credits && credits.crew) && credits.crew.find(crew => crew.job.toLowerCase() == 'director');
+    let director = (credits && credits.crew) && credits.crew.find(crew => crew.job.toLowerCase() === 'director');
     if (director) {
       return director.name
     }
@@ -61,8 +62,14 @@ function MovieDetail() {
     return (new Date(date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'}))
   }
 
+  const back = () => {
+    console.log('back')
+    history.goBack();
+  }
+
   return (
     <div>
+      <img className="back" onClick={back} src={Back} alt="back" />
       <div className="backdrop">
         <img src={`${IMGBASEURL}w780/${movie.backdrop_path}`} alt={`${movie.title} img`} />
       </div>

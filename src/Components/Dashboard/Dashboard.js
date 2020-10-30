@@ -18,7 +18,7 @@ function Dashboard() {
     centerMode: true,
     infinite: true,
     slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToScroll: 1,
     speed: 500,
     swipeToSlide: true,
     responsive: [
@@ -26,14 +26,14 @@ function Dashboard() {
         breakpoint: 1280,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToScroll: 1,
         }
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
         }
       },
       {
@@ -74,7 +74,7 @@ function Dashboard() {
   return (
     <div className="dashboard">
       <div className="header">
-        <img src={Icon} />
+        <img src={Icon} alt="icon" />
         <h2 className="appname">Cineplex</h2>
       </div>
       <div>
