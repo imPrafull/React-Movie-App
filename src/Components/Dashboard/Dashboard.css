@@ -27,22 +27,3 @@
 .now-playing {
   margin-top: 1rem;
 }
-
-/* .now-playing-list {
-  max-height: 420px;
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
-.now-playing-list::-webkit-scrollbar {
-  display: none;
-} */
-
-/* .slick-slide {
-  margin: 0 10px;
-}
-.slick-list {
-  margin: 0 -10px;
-} */

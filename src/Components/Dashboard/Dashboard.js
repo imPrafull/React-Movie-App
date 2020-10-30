@@ -16,7 +16,6 @@ function Dashboard() {
     className: "center",
     centerMode: true,
     infinite: true,
-    // centerPadding: "1px",
     slidesToShow: 4,
     slidesToScroll: 4,
     speed: 500,
@@ -27,8 +26,6 @@ function Dashboard() {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
-          // infinite: true,
-          // dots: true
         }
       },
       {
@@ -36,7 +33,6 @@ function Dashboard() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          // initialSlide: 2
         }
       },
       {
@@ -59,14 +55,12 @@ function Dashboard() {
         breakpoint: 1280,
         settings: {
           slidesToShow: 7,
-          // infinite: true,
         }
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 5,
-          // initialSlide: 2
         }
       },
       {
@@ -121,7 +115,6 @@ function Dashboard() {
       </div>
       <div className="now-playing">
         <h3 className="list-header">Now In Cinemas</h3>
-        {/* <ul className="now-playing-list"> */}
         <Slider {...nowplayingSliderSettings}>
           {
             nowPlayingMovies.map(movie => {
@@ -129,7 +122,6 @@ function Dashboard() {
             })
           }
         </Slider>
-        {/* </ul> */}
       </div>
     </div>
     
