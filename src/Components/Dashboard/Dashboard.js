@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react';
+import ScrollContainer from 'react-indiana-drag-scroll';
 
 import MovieTile from '../MovieTile/MovieTile';
 import { getUpcomingMovies, getNowPlayingMovies } from '../../Shared/Api';
@@ -45,33 +46,6 @@ function Dashboard() {
     ]
   };
 
-  const nowplayingSliderSettings = {
-    slidesToShow: 9,
-    className: "center",
-    swipeToSlide: true,
-    infinite: true,
-    responsive: [
-      {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 7,
-        }
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 5,
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 2.3,
-        }
-      }
-    ]
-  }
-
   useEffect(() => {
     fetchList();
   }, []);
@@ -98,7 +72,7 @@ function Dashboard() {
   }
 
   return (
-    <div>
+    <div className="dashboard">
       <div className="header">
         <img src={Icon} />
         <h2 className="appname">Cineplex</h2>
@@ -115,13 +89,15 @@ function Dashboard() {
       </div>
       <div className="now-playing">
         <h3 className="list-header">Now In Cinemas</h3>
-        <Slider {...nowplayingSliderSettings}>
+        <ScrollContainer horizontal={true} className="scroll-container">
+          <div className="now-playing-list">
           {
             nowPlayingMovies.map(movie => {
               return <MovieTile key={movie.id} movie={movie} type="nowPlaying" />
             })
           }
-        </Slider>
+          </div>
+        </ScrollContainer>
       </div>
     </div>
     

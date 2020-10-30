@@ -132,7 +132,6 @@
 .cast-list {
   display: flex;
   max-height: 420px;
-  display: flex;
 }
 
 .cast-list div {
