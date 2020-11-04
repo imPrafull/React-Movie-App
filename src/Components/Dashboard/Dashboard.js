@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 
 import MovieTile from '../MovieTile/MovieTile';
-import { getUpcomingMovies, getNowPlayingMovies } from '../../Shared/Api';
+import { httpGet } from '../../Shared/Api';
 import './Dashboard.css';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
@@ -51,7 +51,7 @@ function Dashboard() {
   }, []);
 
   const fetchList = async () => {
-    getUpcomingMovies()  
+    httpGet('movie/upcoming', {language: 'en-US', page: 1})  
       .then(data => {
         if (data.errors) {
           console.log(data.errors[0]);
@@ -60,7 +60,7 @@ function Dashboard() {
         setUpcomingMovies(data.results);
       });
 
-    getNowPlayingMovies()  
+    httpGet('movie/now_playing', {language: 'en-US', page: 1})  
       .then(data => {
         if (data.errors) {
           console.log(data.errors[0]);

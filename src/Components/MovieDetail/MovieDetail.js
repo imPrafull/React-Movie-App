@@ -7,17 +7,19 @@ import Star from '../../Assets/Icons/star.svg';
 import Play from '../../Assets/Icons/play-circle.svg';
 import Back from '../../Assets/Icons/back.svg';
 import Clock from '../../Assets/Icons/clock.svg';
-import { getMovieDetail } from '../../Shared/Api';
-import { IMGBASEURL } from '../../Shared/Api';
+import { httpGet } from '../../Shared/Api';
 
 function MovieDetail() {
   const [ movie, setMovie] = useState({});
+  const [imgBaseUrl, setImgBaseUrl] = useState('');
+
   const history = useHistory();
   let { id } = useParams();
 
   useEffect(() => {
+    setImgBaseUrl(localStorage.getItem('IMG_BASE_URL'));
     const fetchMovieDetail = async () => {
-      getMovieDetail(id)  
+      httpGet(`movie/${id}`, {language: 'en-US', append_to_response: 'credits'})  
         .then(data => {
           if (data.errors) {
             console.log(data.errors[0]);
@@ -41,7 +43,7 @@ function MovieDetail() {
       return (
         <div key={cast.cast_id}>
           <div>
-            <img src={`${IMGBASEURL}w185/${cast.profile_path}`} alt={cast.name} />
+            <img src={`${imgBaseUrl}w185/${cast.profile_path}`} alt={cast.name} />
           </div>
           <p className="cast-name">{cast.name}</p>
           <p className="character-name">{cast.character}</p>
@@ -63,7 +65,6 @@ function MovieDetail() {
   }
 
   const back = () => {
-    console.log('back')
     history.goBack();
   }
 
@@ -71,7 +72,7 @@ function MovieDetail() {
     <div>
       <img className="back" onClick={back} src={Back} alt="back" />
       <div className="backdrop">
-        <img src={`${IMGBASEURL}w780/${movie.backdrop_path}`} alt={`${movie.title} img`} />
+        <img src={`${imgBaseUrl}w780/${movie.backdrop_path}`} alt={`${movie.title} img`} />
       </div>
 
       <div className="top-bar">
