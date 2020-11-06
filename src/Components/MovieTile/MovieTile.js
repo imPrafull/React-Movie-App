@@ -11,7 +11,9 @@ function MovieTile({ movie, type, genres }) {
   const history = useHistory();
   
   useEffect(() => {
-    setImgBaseUrl(localStorage.getItem('IMG_BASE_URL'));
+    if (localStorage.getItem('IMG_BASE_URL')) {
+      setImgBaseUrl(localStorage.getItem('IMG_BASE_URL'));
+    }
   }, []);
 
   let genresToShow = [];
