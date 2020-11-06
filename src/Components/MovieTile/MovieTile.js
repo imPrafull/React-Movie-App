@@ -3,9 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import './MovieTile.css';
 
-import { GENRES } from '../../Shared/Api';
-
-function MovieTile({ movie, type }) {
+function MovieTile({ movie, type, genres }) {
 
   const [mouseMoved, setMouseMoved] = useState(false);
   const [imgBaseUrl, setImgBaseUrl] = useState('');
@@ -16,10 +14,10 @@ function MovieTile({ movie, type }) {
     setImgBaseUrl(localStorage.getItem('IMG_BASE_URL'));
   }, []);
 
-  let genres = [];
+  let genresToShow = [];
   movie.genre_ids.forEach(genre_id => {
-    let genre = GENRES ? GENRES.find(genre => genre.id === genre_id).name : [];
-    genres.push(genre);
+    let genre = genres ? genres.find(genre => genre.id === genre_id).name : [];
+    genresToShow.push(genre);
   });
 
 
@@ -40,7 +38,7 @@ function MovieTile({ movie, type }) {
         <img src={`${imgBaseUrl}w300/${movie.poster_path}`} alt={`${movie.title} img`} />
       </div>
       <h4>{movie.title}</h4>
-      <p>{genres.slice(0, 3).join(', ')}</p>
+      <p>{genresToShow.slice(0, 3).join(', ')}</p>
     </div>
   );
 }

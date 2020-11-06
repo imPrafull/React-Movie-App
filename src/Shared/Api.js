@@ -1,6 +1,5 @@
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 const BASEURL = 'https://api.themoviedb.org/3/';
-export var GENRES = null;
 
 export async function httpGet(endpoint, queryParams = null) {
   let url = queryParams
@@ -9,6 +8,5 @@ export async function httpGet(endpoint, queryParams = null) {
   let response = await fetch(url)
     .catch(err => {console.log(err)});
   let data = response ? await response?.json() : {errors : ['Failed to fetch']};
-  GENRES = data.genres ? data.genres : null;
   return data;
 }

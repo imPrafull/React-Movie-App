@@ -29,16 +29,6 @@ function App() {
     }
   }
 
-  
-
-  httpGet('genre/movie/list', {language: 'en-US'})
-    .then(data => {
-      if (data.errors) {
-        console.log(data.errors[0]);
-        return;
-      }
-    });
-
   return (
     <Router>
       <Switch>

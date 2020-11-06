@@ -13,6 +13,8 @@ function Dashboard() {
 
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
+  const [genres, setGenres] = useState([]);
+
   const upcomingSliderSettings = {
     className: "center",
     centerMode: true,
@@ -68,6 +70,15 @@ function Dashboard() {
         }
         setNowPlayingMovies(data.results);
       });
+
+      httpGet('genre/movie/list', {language: 'en-US'})
+        .then(data => {
+          if (data.errors) {
+            console.log(data.errors[0]);
+            return;
+          }
+          setGenres(data.genres);
+        });
     
   }
 
@@ -82,7 +93,7 @@ function Dashboard() {
         <Slider {...upcomingSliderSettings}>
           {
             upcomingMovies.map(movie => {
-              return <MovieTile key={movie.id} movie={movie} type="upcoming" />
+              return <MovieTile key={movie.id} movie={movie} type="upcoming" genres={genres} />
             })
           }
         </Slider>
@@ -93,7 +104,7 @@ function Dashboard() {
           <div className="now-playing-list">
           {
             nowPlayingMovies.map(movie => {
-              return <MovieTile key={movie.id} movie={movie} type="nowPlaying" />
+              return <MovieTile key={movie.id} movie={movie} type="nowPlaying" genres={genres} />
             })
           }
           </div>
