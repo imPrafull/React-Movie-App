@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { DateTime } from "luxon";
 
 import './App.css';
 import Dashboard from './Components/Dashboard/Dashboard';
@@ -13,8 +14,8 @@ function App() {
   }, [])
 
   const onLoad = () => {
-    let imgBaseUrl = localStorage.getItem('IMG_BASE_URL');
-    if (imgBaseUrl) {
+    let config = JSON.parse(localStorage.getItem('CONFIG'));
+    if (config?.imgBaseUrl && checkTime(config?.timestamp)) {
       return;
     }
     else {
@@ -24,8 +25,25 @@ function App() {
             console.log(data.errors[0]);
             return;
           }
-          localStorage.setItem('IMG_BASE_URL', data.images.base_url);
+          let config = {
+            imgBaseUrl: data.images.base_url,
+            timestamp: DateTime.local()
+          }
+          localStorage.setItem('CONFIG', JSON.stringify(config));
         });
+    }
+  }
+
+  const checkTime = (storedAt) => {
+    let start = DateTime.fromISO(storedAt.substring(0, 10));
+    let now = DateTime.local();
+    let diffInDays = now.diff(start, 'days');
+    let diffObject = diffInDays.toObject();
+    if (diffObject.days < 15) {
+      return true;
+    }
+    else {
+      return false
     }
   }
 

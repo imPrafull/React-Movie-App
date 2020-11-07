@@ -11,8 +11,8 @@ function MovieTile({ movie, type, genres }) {
   const history = useHistory();
   
   useEffect(() => {
-    if (localStorage.getItem('IMG_BASE_URL')) {
-      setImgBaseUrl(localStorage.getItem('IMG_BASE_URL'));
+    if (localStorage.getItem('CONFIG')) {
+      setImgBaseUrl(JSON.parse(localStorage.getItem('CONFIG')).imgBaseUrl);
     }
   }, []);
 
