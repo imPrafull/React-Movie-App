@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { DateTime } from "luxon";
 
@@ -9,32 +9,23 @@ import { httpGet } from './Shared/Api';
 
 function App() {
 
-  useEffect(() => {
-    onLoad();
-  }, [])
-
-  const onLoad = () => {
-    let config = JSON.parse(localStorage.getItem('CONFIG'));
-    if (config?.imgBaseUrl && checkTime(config?.timestamp)) {
-      return;
-    }
-    else {
-      httpGet('configuration')
-        .then(data => {
-          if (data.errors) {
-            console.log(data.errors[0]);
-            return;
-          }
-          let config = {
-            imgBaseUrl: data.images.base_url,
-            timestamp: DateTime.local()
-          }
-          localStorage.setItem('CONFIG', JSON.stringify(config));
-        });
-    }
+  let config = JSON.parse(localStorage.getItem('CONFIG'));
+  if (!(config?.imgBaseUrl && checkTime(config?.timestamp))) {
+    httpGet('configuration')
+      .then(data => {
+        if (data.errors) {
+          console.log(data.errors[0]);
+          return;
+        }
+        let config = {
+          imgBaseUrl: data.images.base_url,
+          timestamp: DateTime.local()
+        }
+        localStorage.setItem('CONFIG', JSON.stringify(config));
+      });
   }
 
-  const checkTime = (storedAt) => {
+  function checkTime(storedAt) {
     let start = DateTime.fromISO(storedAt.substring(0, 10));
     let now = DateTime.local();
     let diffInDays = now.diff(start, 'days');

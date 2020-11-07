@@ -6,7 +6,7 @@ import './MovieTile.css';
 function MovieTile({ movie, type, genres }) {
 
   const [mouseMoved, setMouseMoved] = useState(false);
-  const [imgBaseUrl, setImgBaseUrl] = useState('');
+  const [imgBaseUrl, setImgBaseUrl] = useState('http://image.tmdb.org/t/p/');
 
   const history = useHistory();
   

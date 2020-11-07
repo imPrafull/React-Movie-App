@@ -17,7 +17,9 @@ function MovieDetail() {
   let { id } = useParams();
 
   useEffect(() => {
-    setImgBaseUrl(localStorage.getItem('IMG_BASE_URL'));
+    if (localStorage.getItem('CONFIG')) {
+      setImgBaseUrl(JSON.parse(localStorage.getItem('CONFIG')).imgBaseUrl);
+    }
     const fetchMovieDetail = async () => {
       httpGet(`movie/${id}`, {language: 'en-US', append_to_response: 'credits'})  
         .then(data => {
