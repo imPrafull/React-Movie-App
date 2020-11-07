@@ -6,13 +6,13 @@ import './MovieTile.css';
 function MovieTile({ movie, type, genres }) {
 
   const [mouseMoved, setMouseMoved] = useState(false);
-  const [imgBaseUrl, setImgBaseUrl] = useState('');
+  const [imgBaseUrl, setImgBaseUrl] = useState('http://image.tmdb.org/t/p/');
 
   const history = useHistory();
   
   useEffect(() => {
-    if (localStorage.getItem('IMG_BASE_URL')) {
-      setImgBaseUrl(localStorage.getItem('IMG_BASE_URL'));
+    if (localStorage.getItem('CONFIG')) {
+      setImgBaseUrl(JSON.parse(localStorage.getItem('CONFIG')).imgBaseUrl);
     }
   }, []);
 
