@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import { useHistory } from "react-router-dom";
 
 import MovieTile from '../MovieTile/MovieTile';
 import { httpGet } from '../../Shared/Api';
@@ -14,6 +15,7 @@ function Dashboard() {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
   const [genres, setGenres] = useState([]);
+  const history = useHistory();
 
   const upcomingSliderSettings = {
     className: "center",
@@ -55,31 +57,33 @@ function Dashboard() {
   const fetchList = async () => {
     httpGet('movie/upcoming', {language: 'en-US', page: 1})  
       .then(data => {
-        if (data.errors) {
-          console.log(data.errors[0]);
-          return;
+        if (data) {
+          setUpcomingMovies(data.results);
         }
-        setUpcomingMovies(data.results);
+        else {
+          history.push("/error");
+        }
       });
 
     httpGet('movie/now_playing', {language: 'en-US', page: 1})  
       .then(data => {
-        if (data.errors) {
-          console.log(data.errors[0]);
-          return;
+        if (data) {
+          setNowPlayingMovies(data.results);
         }
-        setNowPlayingMovies(data.results);
+        else {
+          history.push("/error");
+        }
       });
 
-      httpGet('genre/movie/list', {language: 'en-US'})
-        .then(data => {
-          if (data.errors) {
-            console.log(data.errors[0]);
-            return;
-          }
+    httpGet('genre/movie/list', {language: 'en-US'})
+      .then(data => {
+        if (data) {
           setGenres(data.genres);
-        });
-    
+        }
+        else {
+          history.push("/error");
+        }
+      });
   }
 
   return (

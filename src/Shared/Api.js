@@ -8,5 +8,10 @@ export async function httpGet(endpoint, queryParams = null) {
   let response = await fetch(url)
     .catch(err => {console.log(err)});
   let data = response ? await response?.json() : {errors : ['Failed to fetch']};
-  return data;
+  if (data.errors) {
+    console.log(data.errors[0]);
+    return;
+  } else {
+    return data;
+  }
 }

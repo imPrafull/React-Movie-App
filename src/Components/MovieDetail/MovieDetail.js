@@ -23,11 +23,12 @@ function MovieDetail() {
     const fetchMovieDetail = async () => {
       httpGet(`movie/${id}`, {language: 'en-US', append_to_response: 'credits'})  
         .then(data => {
-          if (data.errors) {
-            console.log(data.errors[0]);
-            return;
-          }
+        if (data) {
           setMovie(data);
+        }
+        else {
+          history.push("/error");
+        }
         });
     }
     fetchMovieDetail();

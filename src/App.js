@@ -1,27 +1,29 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
 import { DateTime } from "luxon";
 
 import './App.css';
 import Dashboard from './Components/Dashboard/Dashboard';
 import MovieDetail from './Components/MovieDetail/MovieDetail';
+import Error from './Components/Error/Error';
 import { httpGet } from './Shared/Api';
 
 function App() {
+  const history = useHistory();
 
   let config = JSON.parse(localStorage.getItem('CONFIG'));
   if (!(config?.imgBaseUrl && checkTime(config?.timestamp))) {
     httpGet('configuration')
       .then(data => {
-        if (data.errors) {
-          console.log(data.errors[0]);
-          return;
+        if (data) {
+          let config = {
+            imgBaseUrl: data.images.base_url,
+            timestamp: DateTime.local()
+          }
+          localStorage.setItem('CONFIG', JSON.stringify(config));
+        } else {
+          history.push("/error");
         }
-        let config = {
-          imgBaseUrl: data.images.base_url,
-          timestamp: DateTime.local()
-        }
-        localStorage.setItem('CONFIG', JSON.stringify(config));
       });
   }
 
@@ -41,8 +43,9 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/:id" component={MovieDetail} />
-        <Route path="/" component={Dashboard} />
+        <Route exact path="/" component={Dashboard} />
+        <Route exact path="/error" component={Error} />
+        <Route exact path="/:id" component={MovieDetail} />
       </Switch>
     </Router>
   );
