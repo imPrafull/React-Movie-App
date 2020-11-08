@@ -55,6 +55,17 @@ function Dashboard() {
   }, []);
 
   const fetchList = async () => {
+
+    httpGet('genre/movie/list', {language: 'en-US'})
+      .then(data => {
+        if (data) {
+          setGenres(data.genres);
+        }
+        else {
+          history.push("/error");
+        }
+      });
+      
     httpGet('movie/upcoming', {language: 'en-US', page: 1})  
       .then(data => {
         if (data) {
@@ -69,16 +80,6 @@ function Dashboard() {
       .then(data => {
         if (data) {
           setNowPlayingMovies(data.results);
-        }
-        else {
-          history.push("/error");
-        }
-      });
-
-    httpGet('genre/movie/list', {language: 'en-US'})
-      .then(data => {
-        if (data) {
-          setGenres(data.genres);
         }
         else {
           history.push("/error");
