@@ -60,31 +60,31 @@ function Dashboard() {
       .then(data => {
         if (data) {
           setGenres(data.genres);
-        }
-        else {
-          history.push("/error");
-        }
-      });
-      
-    httpGet('movie/upcoming', {language: 'en-US', page: 1})  
-      .then(data => {
-        if (data) {
-          setUpcomingMovies(data.results);
-        }
-        else {
-          history.push("/error");
-        }
-      });
+          httpGet('movie/upcoming', {language: 'en-US', page: 1})  
+            .then(data => {
+              if (data) {
+                setUpcomingMovies(data.results);
+              }
+              else {
+                history.push("/error");
+              }
+            });
 
-    httpGet('movie/now_playing', {language: 'en-US', page: 1})  
-      .then(data => {
-        if (data) {
-          setNowPlayingMovies(data.results);
+          httpGet('movie/now_playing', {language: 'en-US', page: 1})  
+            .then(data => {
+              if (data) {
+                setNowPlayingMovies(data.results);
+              }
+              else {
+                history.push("/error");
+              }
+            });
         }
         else {
           history.push("/error");
         }
       });
+    
   }
 
   return (

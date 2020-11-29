@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from "react-router-dom";
 
 import './Error.css';
@@ -13,7 +13,7 @@ function Error() {
   return (
     <div className="error-container">
       <h1>Oops, Something Went Wrong! Try Again Later...</h1>
-      <a href="javascript:;" onClick={onNavigate}>Click here to refresh</a>      
+      <a href="javascript:void(0);" onClick={onNavigate}>Click here to refresh</a>      
     </div>
   )
 }
