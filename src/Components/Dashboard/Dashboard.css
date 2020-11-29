@@ -2,7 +2,8 @@
   overflow-x: hidden;
 }
 
-.now-playing h3 {
+.now-playing-div h3 {
+  margin-top: 1rem;
   margin-bottom: 0;
 }
 
@@ -26,10 +27,6 @@
   height: 2em;
   width: 2em;
   margin-right: .5rem;
-}
-
-.now-playing {
-  margin-top: 1rem;
 }
 
 .now-playing-list {

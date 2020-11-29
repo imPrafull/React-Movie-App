@@ -63,6 +63,8 @@
 
 .now-playing {
   margin-right: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   cursor: pointer;
 }
 

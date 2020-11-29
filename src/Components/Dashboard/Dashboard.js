@@ -103,7 +103,7 @@ function Dashboard() {
           }
         </Slider>
       </div>
-      <div className="now-playing">
+      <div className="now-playing-div">
         <h3 className="list-header">Now In Cinemas</h3>
         <ScrollContainer horizontal={true} className="scroll-container">
           <div className="now-playing-list">
