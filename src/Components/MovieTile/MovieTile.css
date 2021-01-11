@@ -78,6 +78,10 @@
   border-radius: 20px;
 }
 
+.now-playing:last-child img {
+  margin-right: 1.5rem;
+}
+
 .now-playing p {
   font-size: .7em;
   color: #949496;
