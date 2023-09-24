@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import ScrollContainer from 'react-indiana-drag-scroll';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper/modules";
 
 import './MovieDetail.css';
 import Star from '../../Assets/Icons/star.svg';
@@ -13,8 +14,18 @@ function MovieDetail() {
   const [ movie, setMovie] = useState({});
   const [imgBaseUrl, setImgBaseUrl] = useState('');
 
-  const history = useHistory();
+  const navigate = useNavigate();
   let { id } = useParams();
+
+  const castSlider = {
+    modules: [ FreeMode ],
+    slidesPerView: 'auto',
+    freeMode: {
+      enabled: true,
+      sticky: true,
+      momentumBounce: false,
+    }
+  }
 
   useEffect(() => {
     if (localStorage.getItem('CONFIG')) {
@@ -27,7 +38,7 @@ function MovieDetail() {
           setMovie(data);
         }
         else {
-          history.push("/error");
+          navigate("/error");
         }
         });
     }
@@ -44,13 +55,13 @@ function MovieDetail() {
     let limitedCasts = (credits && credits.cast) && credits.cast.slice(0,10);
     let result = limitedCasts && limitedCasts.map(cast => {
       return (
-        <div key={cast.cast_id}>
-          <div>
-            <img src={`${imgBaseUrl}w185/${cast.profile_path}`} alt={cast.name} />
+        <SwiperSlide key={cast.cast_id}>
+          <div className='cast'>
+            <img className='pic' src={`${imgBaseUrl}w185/${cast.profile_path}`} alt={cast.name} />
+            <p className="name">{cast.name}</p>
+            <p className="character-name">{cast.character}</p>
           </div>
-          <p className="cast-name">{cast.name}</p>
-          <p className="character-name">{cast.character}</p>
-        </div>
+        </SwiperSlide>
       )
     });
     return result;
@@ -68,7 +79,7 @@ function MovieDetail() {
   }
 
   const back = () => {
-    history.goBack();
+    navigate(-1);
   }
 
   return (
@@ -109,13 +120,13 @@ function MovieDetail() {
       </div>
 
       <h3 className="cast-title">Cast</h3>
-      <ScrollContainer horizontal={true} className="scroll-container">
-        <div className="cast">
+      <Swiper className='now-playing-list' {...castSlider}>
+        {
           <div className="cast-list">
             { getCastList(movie.credits) }
           </div>
-        </div>
-      </ScrollContainer>
+        }
+      </Swiper>
     </div>
   );
 }

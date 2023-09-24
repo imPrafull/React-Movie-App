@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import './MovieTile.css';
 
 function MovieTile({ movie, type, genres }) {
 
-  const [mouseMoved, setMouseMoved] = useState(false);
+  // const [mouseMoved, setMouseMoved] = useState(false);
   const [imgBaseUrl, setImgBaseUrl] = useState('http://image.tmdb.org/t/p/');
 
-  const history = useHistory();
+  const navigate = useNavigate();
   
   useEffect(() => {
     if (localStorage.getItem('CONFIG')) {
@@ -24,23 +24,17 @@ function MovieTile({ movie, type, genres }) {
 
 
   const handleClick = () => {
-    if (!mouseMoved) {
-      history.push(`/${movie.id}`)
-    }
+    navigate(`/${movie.id}`)
   }
 
   return (
     <div
       onClick={handleClick}
-      className={type === "upcoming" ? "upcoming-movie" : "now-playing"}
-      onMouseMove={() => setMouseMoved(true)}
-      onMouseDown={() => setMouseMoved(false)}
+      className={`${type === "upcoming" ? "upcoming-movie" : "now-playing"} mt-container`}
       onMouseUp={() => handleClick()} >
-      <div className="poster">
-        <img src={`${imgBaseUrl}w300/${movie.poster_path}`} alt={`${movie.title} img`} />
-      </div>
-      <h4>{movie.title}</h4>
-      <p>{genresToShow.slice(0, 3).join(', ')}</p>
+        <img className='poster' src={`${imgBaseUrl}w300/${movie.poster_path}`} alt={`${movie.title} img`} />
+      <h4 className='title'>{movie.title}</h4>
+      <p className='genres'>{genresToShow.slice(0, 3).join(', ')}</p>
     </div>
   );
 }

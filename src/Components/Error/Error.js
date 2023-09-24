@@ -1,10 +1,10 @@
 import React from 'react';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import './Error.css';
 
 function Error() {
-  const history = useHistory();
+  const history = useNavigate();
 
   function onNavigate() {
     history.push('/')

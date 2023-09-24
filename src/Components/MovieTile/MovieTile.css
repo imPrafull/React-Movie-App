@@ -1,4 +1,4 @@
-.upcoming-movie h4, .upcoming-movie p, .now-playing h4, .now-playing p {
+.upcoming-movie .title, .upcoming-movie .genres, .now-playing .title, .now-playing .genres {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -10,80 +10,72 @@
   text-overflow: ellipsis;
 }
 
-.upcoming-movie {
+.upcoming-movie, .now-playing {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
-  height: 500px;
-  opacity: 0.8;
   cursor: pointer;
 }
 
-.upcoming-movie .poster {
-  max-width: 300px;
-  width: 90%;
-  height: 70%;
-  margin: 0 5%;
+.upcoming-movie {
+  width: 300px;
+  margin: 0 1rem;
 }
 
-.upcoming-movie .poster img {
+.mt-container .poster, .mt-container .poster {
   width: 100%;
-  height: 100%;
   object-fit: cover;
-  border-radius: 30px;
+  border-radius: 1.8rem;
 }
 
-.slick-active .upcoming-movie .poster {
-  height: 80%;
-  border-radius: 30px;
-  box-shadow: 0 8px 15px -6px #464646;
+.upcoming-movie .poster {
+  aspect-ratio: 2 / 3;
 }
 
-.slick-active .upcoming-movie {
-  justify-content: space-evenly;
-  opacity: 1;
+.mt-container .title, .mt-container .genres {
+  margin-left: .8rem;
 }
 
-.upcoming-movie h4, .upcoming-movie p {
-  margin-left: 5%;
-}
-
-.upcoming-movie h4{
+.upcoming-movie .title{
   margin-top: 1rem;
-  font-size: 1.4em;
+  font-size: 1.4rem;
   font-weight: 700;
 }
 
-.upcoming-movie p {
+.upcoming-movie .genres {
   font-size: .9em;
   color: #949496;
   font-weight: 500;
 }
 
 .now-playing {
-  margin-right: 1rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  cursor: pointer;
-}
-
-.now-playing:first-child {
-  margin-left: 1.5rem;
-}
-
-.now-playing img {
   width: 130px;
-  height: 200px;
+  margin: 0 .5rem;
+}
+
+.now-playing .poster {
+  aspect-ratio: 1 / 1.54;
   border-radius: 20px;
+  margin-bottom: .5rem;
 }
 
-.now-playing:last-child img {
-  margin-right: 1.5rem;
-}
-
-.now-playing p {
+.now-playing .genres {
   font-size: .7em;
   color: #949496;
   font-weight: 500;
+}
+
+@media screen and (max-width: 480px) {
+  .upcoming-movie {
+    width: 80vw;
+    margin: 0 .5vw;
+    opacity: .8;
+    scale: .9;
+    transition: all .2s ease-in-out;
+  }
+
+  .swiper-slide-active .upcoming-movie {
+    opacity: 1;
+    scale: 1;
+  }
 }
