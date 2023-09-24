@@ -1,7 +1,7 @@
 Netlify Link: [React Movies](https://react-movies-158.netlify.app/).
 
 ## Description
-A React Web App that provides a list of movies that are upcoming or in theatres now with details. The main aim was to understand the react framework and some libraries associated with it like react-router. The Movie Datebase Api is used for getting the list of movies and details.
+A React Web App that provides a list of movies that are upcoming or in theatres now with details. The Movie Datebase Api is used for getting the list of movies and details.
 
 ## How to run the app
 

@@ -1,13 +1,16 @@
 import React, { useState, useEffect} from 'react';
-import ScrollContainer from 'react-indiana-drag-scroll';
-import { useHistory } from "react-router-dom";
+// import ScrollContainer from 'react-indiana-drag-scroll';
+import { useNavigate } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper/modules";
+import 'swiper/css'
 
 import MovieTile from '../MovieTile/MovieTile';
 import { httpGet } from '../../Shared/Api';
 import './Dashboard.css';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import Slider from 'react-slick';
+// import Slider from 'react-slick';
 import Icon from '../../Assets/Icons/clapperboard.svg';
 
 function Dashboard() {
@@ -15,40 +18,23 @@ function Dashboard() {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
   const [genres, setGenres] = useState([]);
-  const history = useHistory();
+  const history = useNavigate();
 
-  const upcomingSliderSettings = {
-    className: "center",
-    centerMode: true,
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    speed: 500,
-    swipeToSlide: true,
-    responsive: [
-      {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
+  const upcomingSlider = {
+    centeredSlides: true,
+    slidesPerView: 'auto',
+    loop: true
+  }
+
+  const nowPlayingSlider = {
+    modules: [ FreeMode ],
+    slidesPerView: 'auto',
+    freeMode: {
+      enabled: true,
+      sticky: true,
+      momentumBounce: false,
+    }
+  }
 
   useEffect(() => {
     fetchList();
@@ -95,25 +81,31 @@ function Dashboard() {
       </div>
       <div>
         <h3 className="list-header">Upcoming Movies</h3>
-        <Slider {...upcomingSliderSettings}>
+        <Swiper {...upcomingSlider}>
           {
             upcomingMovies.map(movie => {
-              return <MovieTile key={movie.id} movie={movie} type="upcoming" genres={genres} />
+              return (
+                <SwiperSlide key={movie.id}>
+                  <MovieTile movie={movie} type="upcoming" genres={genres} />
+                </SwiperSlide>
+              )
             })
           }
-        </Slider>
+        </Swiper>
       </div>
       <div className="now-playing-div">
         <h3 className="list-header">Now In Cinemas</h3>
-        <ScrollContainer horizontal={true} className="scroll-container">
-          <div className="now-playing-list">
+        <Swiper className='now-playing-list' {...nowPlayingSlider}>
           {
             nowPlayingMovies.map(movie => {
-              return <MovieTile key={movie.id} movie={movie} type="nowPlaying" genres={genres} />
+              return (
+                <SwiperSlide key={movie.id}>
+                  <MovieTile movie={movie} type="nowPlaying" genres={genres} />
+                </SwiperSlide>
+              )
             })
           }
-          </div>
-        </ScrollContainer>
+        </Swiper>
       </div>
     </div>
     

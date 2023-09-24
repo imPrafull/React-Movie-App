@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { DateTime } from "luxon";
 
 import './App.css';
@@ -9,7 +9,7 @@ import Error from './Components/Error/Error';
 import { httpGet } from './Shared/Api';
 
 function App() {
-  const history = useHistory();
+  const history = useNavigate();
 
   let config = JSON.parse(localStorage.getItem('CONFIG'));
   if (!(config?.imgBaseUrl && checkTime(config?.timestamp))) {
@@ -41,13 +41,11 @@ function App() {
   }
 
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Dashboard} />
-        <Route exact path="/error" component={Error} />
-        <Route exact path="/:id" component={MovieDetail} />
-      </Switch>
-    </Router>
+    <Routes>
+      <Route exact path="/" element={<Dashboard/>} />
+      <Route exact path="/error" element={<Error/>} />
+      <Route exact path="/:id" element={<MovieDetail/>} />
+    </Routes>
   );
 }
 

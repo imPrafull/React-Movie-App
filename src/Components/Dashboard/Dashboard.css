@@ -30,6 +30,9 @@
 }
 
 .now-playing-list {
-  display: flex;
-  max-height: 420px;
+  padding: 1rem;
+}
+
+.swiper .swiper-slide {
+  width: auto;
 }
