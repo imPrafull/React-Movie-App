@@ -1,5 +1,4 @@
 import React, { useState, useEffect} from 'react';
-// import ScrollContainer from 'react-indiana-drag-scroll';
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
@@ -10,7 +9,6 @@ import { httpGet } from '../../Shared/Api';
 import './Dashboard.css';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-// import Slider from 'react-slick';
 import Icon from '../../Assets/Icons/clapperboard.svg';
 
 function Dashboard() {
@@ -18,12 +16,19 @@ function Dashboard() {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
   const [genres, setGenres] = useState([]);
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const upcomingSlider = {
     centeredSlides: true,
     slidesPerView: 'auto',
-    loop: true
+    loop: true,
+    loopedSlides: 4,
+    spaceBetween: 4,
+    breakpoints: {
+      480: {
+        spaceBetween: 32,
+      }
+    }
   }
 
   const nowPlayingSlider = {
@@ -52,7 +57,7 @@ function Dashboard() {
                 setUpcomingMovies(data.results);
               }
               else {
-                history.push("/error");
+                navigate("/error");
               }
             });
 
@@ -62,12 +67,12 @@ function Dashboard() {
                 setNowPlayingMovies(data.results);
               }
               else {
-                history.push("/error");
+                navigate("/error");
               }
             });
         }
         else {
-          history.push("/error");
+          navigate("/error");
         }
       });
     

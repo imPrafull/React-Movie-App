@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import './Error.css';
 
 function Error() {
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   function onNavigate() {
-    history.push('/')
+    navigate('/')
   } 
 
   return (
