@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { DateTime } from "luxon";
 
 import './App.css';
@@ -9,7 +9,18 @@ import Error from './Components/Error/Error';
 import { httpGet } from './Shared/Api';
 
 function App() {
-  const history = useNavigate();
+  let router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Dashboard />,
+      errorElement: <Error/>
+    },
+    {
+      path: "movie/:id",
+      element: <MovieDetail />,
+      errorElement: <Error/>,
+    },
+  ]);
 
   let config = JSON.parse(localStorage.getItem('CONFIG'));
   if (!(config?.imgBaseUrl && checkTime(config?.timestamp))) {
@@ -22,7 +33,7 @@ function App() {
           }
           localStorage.setItem('CONFIG', JSON.stringify(config));
         } else {
-          history.push("/error");
+          console.error('Configuration error')
         }
       });
   }
@@ -41,11 +52,7 @@ function App() {
   }
 
   return (
-    <Routes>
-      <Route exact path="/" element={<Dashboard/>} />
-      <Route exact path="/error" element={<Error/>} />
-      <Route exact path="/:id" element={<MovieDetail/>} />
-    </Routes>
+    <RouterProvider router={router} />
   );
 }
 

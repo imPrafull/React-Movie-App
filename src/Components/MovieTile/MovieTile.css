@@ -19,7 +19,6 @@
 
 .upcoming-movie {
   width: 300px;
-  margin: 0 1rem;
 }
 
 .mt-container .poster, .mt-container .poster {
@@ -68,7 +67,6 @@
 @media screen and (max-width: 480px) {
   .upcoming-movie {
     width: 80vw;
-    margin: 0 .5vw;
     opacity: .8;
     scale: .9;
     transition: all .2s ease-in-out;

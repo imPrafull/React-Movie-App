@@ -24,7 +24,7 @@ function MovieTile({ movie, type, genres }) {
 
 
   const handleClick = () => {
-    navigate(`/${movie.id}`)
+    navigate(`/movie/${movie.id}`)
   }
 
   return (
