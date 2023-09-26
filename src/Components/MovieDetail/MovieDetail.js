@@ -20,6 +20,7 @@ function MovieDetail() {
   const castSlider = {
     modules: [ FreeMode ],
     slidesPerView: 'auto',
+    grabCursor: true,
     freeMode: {
       enabled: true,
       sticky: true,
@@ -32,7 +33,7 @@ function MovieDetail() {
       setImgBaseUrl(JSON.parse(localStorage.getItem('CONFIG')).imgBaseUrl);
     }
     const fetchMovieDetail = async () => {
-      httpGet(`movie/${id}`, {language: 'en-US', append_to_response: 'credits'})  
+      httpGet(`movie/${id}`, {language: 'en-US', append_to_response: 'credits,videos'})  
         .then(data => {
         if (data) {
           setMovie(data);
@@ -78,6 +79,13 @@ function MovieDetail() {
     return (new Date(date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'}))
   }
 
+  const openTrailer = () => {
+    const video = movie.videos.results.find(v => v.type === 'Trailer' || v.type === 'Teaser')
+    if (video) {
+      window.open(`https://www.youtube.com/watch?v=${video.key}`)
+    }
+  }
+
   const back = () => {
     navigate(-1);
   }
@@ -96,10 +104,12 @@ function MovieDetail() {
         </div>
         <div className="rating">
           <img src={Star} alt="star" />
-          <p>{movie.vote_average}<span>/10</span></p>
+          <p>{movie.vote_average?.toFixed(1)}<span>/10</span></p>
           <p>{movie.vote_count}</p>
         </div>
-        <img src={Play} alt="play" />
+        <button className='teaser' onClick={openTrailer}>
+          <img src={Play} alt="play" />
+        </button>
       </div>
 
       <div className="movie-header">

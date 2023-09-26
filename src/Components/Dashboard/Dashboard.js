@@ -24,16 +24,24 @@ function Dashboard() {
     loop: true,
     loopedSlides: 4,
     spaceBetween: 4,
+    grabCursor: true,
+    updateOnWindowResize: true,
     breakpoints: {
       480: {
         spaceBetween: 32,
       }
+    },
+    onAfterInit: (e) => {
+      setTimeout(() => {
+        e.slideTo(0, 200)
+      }, 200);
     }
   }
 
   const nowPlayingSlider = {
     modules: [ FreeMode ],
     slidesPerView: 'auto',
+    grabCursor: true,
     freeMode: {
       enabled: true,
       sticky: true,

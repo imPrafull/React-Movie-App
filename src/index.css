@@ -1,4 +1,4 @@
-* {
+html, body, * {
   margin: 0;
   padding: 0;
 }
@@ -12,6 +12,13 @@ body {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 
 code {
