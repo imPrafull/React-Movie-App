@@ -31,7 +31,7 @@
   aspect-ratio: 2 / 3;
 }
 
-.mt-container .title, .mt-container .genres {
+.upcoming-movie.mt-container .title, .upcoming-movie.mt-container .genres {
   margin-left: .8rem;
 }
 
