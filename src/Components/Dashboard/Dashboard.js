@@ -29,11 +29,15 @@ function Dashboard() {
     breakpoints: {
       480: {
         spaceBetween: 32,
+      },
+      850: {
+        centeredSlides: false,
+        spaceBetween: 32,
       }
     },
     onAfterInit: (e) => {
       setTimeout(() => {
-        e.slideTo(0, 200)
+        // e.slideTo(0, 200)
       }, 200);
     }
   }
@@ -90,7 +94,7 @@ function Dashboard() {
     <div className="dashboard">
       <div className="header">
         <img src={Icon} alt="icon" />
-        <h2 className="appname">Cineplex</h2>
+        <h2 className="appname">MoviesNow</h2>
       </div>
       <div>
         <h3 className="list-header">Upcoming Movies</h3>
