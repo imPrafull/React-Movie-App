@@ -94,7 +94,7 @@ function MovieDetail() {
     <div>
       <img className="back" onClick={back} src={Back} alt="back" />
       <div className="backdrop">
-        <img src={`${imgBaseUrl}w780/${movie.backdrop_path}`} alt={`${movie.title} img`} />
+        <img src={`${imgBaseUrl}w780/${movie.backdrop_path}`} alt={`${movie.title ?? ''} img`} />
       </div>
 
       <div className="top-bar">
