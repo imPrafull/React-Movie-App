@@ -1,0 +1,5 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "com.i2econsulting.bbt",
+               "sha256_cert_fingerprints": ["30:60:21:13:96:64:6A:1E:7C:40:F2:C1:C2:48:B5:18:DA:23:27:6A:DC:44:50:92:2B:8D:CF:F3:DD:66:2C:84"] }
+}]
