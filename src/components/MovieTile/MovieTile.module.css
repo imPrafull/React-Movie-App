@@ -1,78 +1,74 @@
-.upcoming-movie .title, .upcoming-movie .genres, .now-playing .title, .now-playing .genres {
+.upcomingMovie .title, .upcomingMovie .genres, .nowPlaying .title, .nowPlaying .genres {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-
-  display: -moz-box;
-  -moz-box-orient: vertical;
-
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.upcoming-movie, .now-playing {
+.upcomingMovie, .nowPlaying {
   display: flex;
   flex-direction: column;
   justify-content: center;
   cursor: pointer;
 }
 
-.upcoming-movie {
+.upcomingMovie {
   width: 300px;
 }
 
-.mt-container .poster, .mt-container .poster {
+.mtContainer .poster {
   width: 100%;
   object-fit: cover;
   border-radius: 1.8rem;
 }
 
-.upcoming-movie .poster {
+.upcomingMovie .poster {
   aspect-ratio: 2 / 3;
 }
 
-.upcoming-movie.mt-container .title, .upcoming-movie.mt-container .genres {
+.upcomingMovie.mtContainer .title, .upcomingMovie.mtContainer .genres {
   margin-left: .8rem;
 }
 
-.upcoming-movie .title{
+.upcomingMovie .title {
   margin-top: 1rem;
   font-size: 1.4rem;
   font-weight: 700;
 }
 
-.upcoming-movie .genres {
+.upcomingMovie .genres {
   font-size: .9em;
   color: #949496;
   font-weight: 500;
 }
 
-.now-playing {
+.nowPlaying {
   width: 130px;
   margin: 0 .5rem;
 }
 
-.now-playing .poster {
+.nowPlaying .poster {
   aspect-ratio: 1 / 1.54;
   border-radius: 20px;
   margin-bottom: .5rem;
 }
 
-.now-playing .genres {
+.nowPlaying .genres {
   font-size: .7em;
   color: #949496;
   font-weight: 500;
 }
 
 @media screen and (max-width: 480px) {
-  .upcoming-movie {
+  .upcomingMovie {
     width: 80vw;
     opacity: .8;
     scale: .9;
     transition: all .2s ease-in-out;
   }
 
-  .swiper-slide-active .upcoming-movie {
+  :global(.swiper-slide-active) .upcomingMovie {
     opacity: 1;
     scale: 1;
   }

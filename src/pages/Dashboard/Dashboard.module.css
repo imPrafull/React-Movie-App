@@ -2,12 +2,12 @@
   overflow-x: hidden;
 }
 
-.now-playing-div h3 {
+.nowPlayingDiv h3 {
   margin-top: 1rem;
   margin-bottom: 0;
 }
 
-.list-header {
+.listHeader {
   font-size: 1.6em;
   margin: .1rem 0 1rem 1.5rem;
 }
@@ -29,16 +29,17 @@
   margin-right: .5rem;
 }
 
-.now-playing-list {
-  padding: 1rem;
+.nowPlayingList {
+  padding-block: 1rem;
+  padding-inline: 1rem;
 }
 
-.swiper .swiper-slide {
+:global(.swiper) :global(.swiper-slide) {
   width: auto;
 }
 
 @media only screen and (min-width: 850px) {
-  .swiper .swiper-wrapper {
-    padding-inline: 1rem !important;
+  .upcomingMovies :global(.swiper), .upcomingMovies :global(.swiper-wrapper) {
+    padding-inline: 1.5rem !important;
   }
 }
