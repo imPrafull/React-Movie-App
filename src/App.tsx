@@ -1,4 +1,3 @@
-import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { DateTime } from "luxon";
 
@@ -10,7 +9,16 @@ import { httpGet } from './shared/api';
 
 interface Config {
   imgBaseUrl: string;
-  timestamp: DateTime;
+  timestamp: string; // Changed from DateTime to string
+}
+
+// Define the expected API response structure
+interface ConfigurationResponse {
+  images: {
+    base_url: string;
+    [key: string]: any;
+  };
+  [key: string]: any;
 }
 
 function App() {
@@ -31,12 +39,12 @@ function App() {
   const config: Config | null = storedConfig ? JSON.parse(storedConfig) : null;
 
   if (!(config?.imgBaseUrl && checkTime(config?.timestamp))) {
-    httpGet('configuration')
+    httpGet<ConfigurationResponse>('configuration')
       .then(data => {
         if (data) {
           const newConfig = {
             imgBaseUrl: data.images.base_url,
-            timestamp: DateTime.local()
+            timestamp: DateTime.local().toISO() // Convert DateTime to ISO string
           };
           localStorage.setItem('CONFIG', JSON.stringify(newConfig));
         } else {
@@ -56,4 +64,4 @@ function App() {
   return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
