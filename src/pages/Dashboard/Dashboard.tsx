@@ -9,8 +9,9 @@ import { httpGet } from '../../shared/api';
 import styles from './Dashboard.module.css';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import Icon from '../../assets/icons/clapperboard.svg?url';
 import { Movie, Genre } from '../../types/movie';
+
+const Icon = new URL('../../assets/icons/clapperboard.svg', import.meta.url).href
 
 function Dashboard() {
   const [upcomingMovies, setUpcomingMovies] = useState<Movie[]>([]);
