@@ -9,7 +9,7 @@ import { httpGet } from '../../shared/api';
 import styles from './Dashboard.module.css';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import Icon from '../../assets/Icons/clapperboard.svg';
+const Icon = require('../../assets/icons/clapperboard.svg').default
 import { Movie, Genre } from '../../types/movie';
 
 function Dashboard() {
