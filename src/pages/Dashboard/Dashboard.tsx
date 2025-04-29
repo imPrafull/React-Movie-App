@@ -11,7 +11,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Movie, Genre } from '../../types/movie';
 
-const Icon = new URL('../../assets/icons/clapperboard.svg', import.meta.url).href
+import Icon from 'assets/icons/clapperboard.svg';
 
 function Dashboard() {
   const [upcomingMovies, setUpcomingMovies] = useState<Movie[]>([]);

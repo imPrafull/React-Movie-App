@@ -7,11 +7,10 @@ import styles from './MovieDetail.module.css';
 import { httpGet } from '../../shared/api';
 import { Movie, Credits } from '../../types/movie';
 
-const Star = new URL('../../assets/icons/star.svg', import.meta.url).href
-const Play = new URL('../../assets/icons/play-circle.svg', import.meta.url).href
-const Back = new URL('../../assets/icons/back.svg', import.meta.url).href
-const Clock = new URL('../../assets/icons/clock.svg', import.meta.url).href
-
+import Star from 'assets/icons/star.svg';
+import Play from 'assets/icons/play-circle.svg';
+import Back from 'assets/icons/back.svg';
+import Clock from 'assets/icons/clock.svg';
 
 function MovieDetail() {
   const [movie, setMovie] = useState<Movie | null>(null);
