@@ -4,13 +4,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 
 import styles from './MovieDetail.module.css';
+import Star from '../../assets/icons/star.svg?url';
+import Play from '../../assets/icons/play-circle.svg?url';
+import Back from '../../assets/icons/back.svg?url';
+import Clock from '../../assets/icons/clock.svg?url';
 import { httpGet } from '../../shared/api';
 import { Movie, Credits } from '../../types/movie';
-
-const Star = require('../../assets/icons/star.svg').default
-const Play = require('../../assets/icons/play-circle.svg').default
-const Back = require('../../assets/icons/back.svg').default
-const Clock = require('../../assets/icons/clock.svg').default
 
 function MovieDetail() {
   const [movie, setMovie] = useState<Movie | null>(null);
