@@ -15,6 +15,7 @@ import Clock from 'assets/Icons/clock.svg';
 function MovieDetail() {
   const [movie, setMovie] = useState<Movie | null>(null);
   const [imgBaseUrl, setImgBaseUrl] = useState('');
+  const [backdropWidth, setBackdropWidth] = useState('w780');
 
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
@@ -29,6 +30,26 @@ function MovieDetail() {
       momentumBounce: false,
     }
   };
+
+  useEffect(() => {
+    const updateBackdropWidth = () => {
+      const width = window.innerWidth;
+      if (width >= 1200) {
+        setBackdropWidth('original');
+      } else if (width >= 768) {
+        setBackdropWidth('w1280');
+      } else {
+        setBackdropWidth('w780');
+      }
+    };
+
+    updateBackdropWidth();
+    window.addEventListener('resize', updateBackdropWidth);
+
+    return () => {
+      window.removeEventListener('resize', updateBackdropWidth);
+    };
+  }, []);
 
   useEffect(() => {
     const config = localStorage.getItem('CONFIG');
@@ -101,7 +122,7 @@ function MovieDetail() {
     <div>
       <img className={styles.back} onClick={() => navigate(-1)} src={Back} alt="back" />
       <div className={styles.backdrop}>
-        <img src={`${imgBaseUrl}w780/${movie.backdrop_path}`} alt={`${movie.title} backdrop`} />
+        <img src={`${imgBaseUrl}${backdropWidth}/${movie.backdrop_path}`} alt={`${movie.title} backdrop`} />
       </div>
 
       <div className={styles.topBar}>

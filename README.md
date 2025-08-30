@@ -1,4 +1,4 @@
-Netlify Link: [React Movies](https://moviesnow1.netlify.app/).
+Netlify Link: [MoviesNow](https://moviesnow1.netlify.app/).
 
 ## Description
 A React Web App that provides a list of movies that are upcoming or in theatres now with details. The Movie Datebase Api is used for getting the list of movies and details.

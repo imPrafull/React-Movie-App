@@ -10,7 +10,8 @@
 
 .backdrop {
   max-width: 780px;
-  height: 200px;
+  min-height: 200px;
+  height: 50vw;
   width: 100%;
 }
 
@@ -32,12 +33,12 @@
 }
 
 .topBar {
-  position: absolute;
-  right: 0px;
-  top: 160px;
+  position: relative;
+  left: 10%;
+  top: -40px;
   z-index: 1;
   height: 80px;
-  width: 95%;
+  width: 90%;
   background-color: white;
   border-radius: 40px 0 0 40px;
   display: flex;
@@ -64,6 +65,7 @@
 
 .runtime p {
   font-size: .9em;
+  margin-top: 4px;
 }
 
 .rating img, .runtime img {
@@ -74,6 +76,7 @@
 .rating p:first-of-type {
   font-size: .8em;
   font-weight: 700;
+  margin-top: 4px;
 }
 
 .rating p:first-of-type span {
@@ -91,7 +94,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin-top: 80px;
   margin-left: 1.5rem;
 }
 
@@ -192,11 +194,11 @@
 @media only screen and (min-width: 768px) {
   .backdrop {
     max-width: 1200px;
-    height: 400px;
+    min-height: 400px;
   }
 
   .topBar {
-    top: 350px;
+    top: -50px;
     height: 100px;
     border-radius: 50px 0 0 50px;
   }
@@ -205,17 +207,12 @@
 @media only screen and (min-width: 1200px) {
   .backdrop {
     max-width: 100%;
-    height: 500px;
+    min-height: 500px;
+    max-height: 70vh;
   }
 
   .backdrop img {
     mask-image: none;
-  }
-
-  .topBar {
-    top: 450px;
-    height: 100px;
-    border-radius: 50px 0 0 50px;
   }
 
   .back {
