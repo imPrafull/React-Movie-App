@@ -1,5 +1,8 @@
 .dashboard {
   overflow-x: hidden;
+  background-color: var(--bg-primary);
+  min-height: 100vh;
+  transition: background-color 0.3s ease;
 }
 
 .nowPlayingDiv h3 {
@@ -10,15 +13,24 @@
 .listHeader {
   font-size: 1.6em;
   margin: .1rem 0 1rem 1.5rem;
+  color: var(--text-primary);
 }
 
 .appname {
   font-size: 1.8em;
   font-weight: 800;
+  color: var(--text-primary);
 }
 
 .header {
   margin: 1rem 0 1.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 1.5rem;
+}
+
+.headerLeft {
   display: flex;
   align-items: center;
 }

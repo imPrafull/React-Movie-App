@@ -12,11 +12,13 @@ function Error() {
       alignItems: 'center',
       justifyContent: 'center',
       padding: '20px',
-      textAlign: 'center'
+      textAlign: 'center',
+      backgroundColor: 'var(--bg-primary)',
+      color: 'var(--text-primary)'
     }}>
       <h1 style={{ marginBottom: '20px' }}>Oops!</h1>
       <p style={{ marginBottom: '20px' }}>Sorry, an unexpected error has occurred.</p>
-      <p style={{ marginBottom: '20px', color: '#666' }}>
+      <p style={{ marginBottom: '20px', color: 'var(--text-secondary)' }}>
         {(error as Error)?.message || 'Unknown error occurred'}
       </p>
       <button

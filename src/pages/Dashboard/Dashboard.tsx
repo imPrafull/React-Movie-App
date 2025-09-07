@@ -5,6 +5,7 @@ import { FreeMode } from "swiper/modules";
 import 'swiper/css';
 
 import MovieTile from '../../components/MovieTile/MovieTile';
+import ThemeSwitch from '../../components/ThemeSwitch/ThemeSwitch';
 import { httpGet } from '../../shared/api';
 import styles from './Dashboard.module.css';
 import "slick-carousel/slick/slick.css"; 
@@ -80,8 +81,11 @@ function Dashboard() {
   return (
     <div className={styles.dashboard}>
       <div className={styles.header}>
-        <img src={Icon} alt="icon" />
-        <h2 className={styles.appname}>MoviesNow</h2>
+        <div className={styles.headerLeft}>
+          <img src={Icon} alt="icon" />
+          <h2 className={styles.appname}>MoviesNow</h2>
+        </div>
+        <ThemeSwitch />
       </div>
       <div>
         <h3 className={styles.listHeader}>Upcoming Movies</h3>
