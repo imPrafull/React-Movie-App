@@ -39,6 +39,8 @@
   height: 2rem;
   width: 2rem;
   margin-right: .5rem;
+  filter: var(--header-icon-filter);
+  transition: filter 0.3s ease;
 }
 
 .nowPlayingList {
