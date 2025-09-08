@@ -1,11 +1,14 @@
 import { useTheme } from '../../hooks/useTheme';
 import styles from './ThemeSwitch.module.css';
+import DarkMode from 'assets/Icons/dark.svg';
+import LightMode from 'assets/Icons/light.svg';
+
 
 function ThemeSwitch() {
   const { theme, toggleTheme } = useTheme();
 
   const getIcon = () => {
-    return theme === 'dark' ? '🌙' : '☀️';
+    return theme === 'dark' ? DarkMode : LightMode;
   };
 
   const getTitle = () => {
@@ -19,7 +22,7 @@ function ThemeSwitch() {
       title={getTitle()}
       aria-label="Toggle theme"
     >
-      <span className={styles.icon}>{getIcon()}</span>
+      <img className={styles.icon} src={getIcon()} ></img>
     </button>
   );
 }

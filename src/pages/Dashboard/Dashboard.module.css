@@ -35,9 +35,9 @@
   align-items: center;
 }
 
-.header img {
-  height: 2em;
-  width: 2em;
+.header .headerLeft img {
+  height: 2rem;
+  width: 2rem;
   margin-right: .5rem;
 }
 
